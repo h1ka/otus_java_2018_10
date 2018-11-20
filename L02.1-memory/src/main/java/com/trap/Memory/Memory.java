@@ -1,6 +1,8 @@
 package com.trap.Memory;
 
 import java.lang.management.ManagementFactory;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * VM options -Xmx512m -Xms512m
@@ -21,35 +23,22 @@ public class Memory {
     public static void main(String... args) throws InterruptedException {
         System.out.println("pid: " + ManagementFactory.getRuntimeMXBean().getName());
         System.out.println("Starting the loop");
-        int size = 20_000_000;
-        while (true) {
-            long mem = getMem();
-            System.out.println("Mem: " + mem);
+        System.out.println(Factory.measureByte());
+        System.out.println(Factory.measureShort());
+        System.out.println(Factory.measureInt());
+        System.out.println(Factory.measureLong());
+        System.out.println(Factory.measureBoolean());
+        System.out.println(Factory.measureChar());
+        System.out.println(Factory.measureFloat());
+        System.out.println(Factory.measureDouble());
 
-            Factory<?> factory = new Factory<>(MyClass::new); //String::new ; Byte.class ; Integer.class
-            var array = factory.createMas(size);
-            long mem2 = getMem();
-            System.out.println("Ref size: " + (mem2 - mem) / array.length);
-
-            for (int i = 0; i < array.length; i++) {
-                array[i] = new MyClass();
-            }
-
-            long mem3 = getMem();
-            System.out.println("Element size: " + (mem3 - mem2) / array.length);
-
-            array = null;
-            System.out.println("Array is ready for GC");
-
-            Thread.sleep(1000); //wait for 1 sec
-        }
-    }
-
-    private static long getMem() throws InterruptedException {
-        System.gc();
-        Thread.sleep(10);
-        Runtime runtime = Runtime.getRuntime();
-        return runtime.totalMemory() - runtime.freeMemory();
+        new Factory<>(()-> new String(new char[0])); //String::new ; Byte.class ; Integer.class
+        new Factory<>(Integer.class);
+        new Factory<>(Boolean.class);
+        new Factory<>(ArrayList::new);
+        new Factory<>(ArrayList::new,10);
+        new Factory<>(HashMap::new);
+        new Factory<>(MyClass::new);
     }
 
     private static class MyClass {
