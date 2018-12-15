@@ -21,13 +21,14 @@ public class Tester {
     }
 
     @BeforeTest
-    private void before3(){
-        System.out.println("before3");
+    private void beforePrivate(){
+        System.out.println("beforePrivate");
     }
 
     @BeforeTest
-    public  void before2(){
-        System.out.println("before2");
+    public  void beforeException() throws Exception {
+        System.out.println("beforeException");
+        throw new Exception();
     }
 
 
@@ -41,9 +42,16 @@ public class Tester {
         System.out.println("test2");
     }
 
+    @AfterTest
+    public  void afterException() throws Exception {
+        System.out.println("afterException");
+        throw new Exception();
 
+    }
     @AfterTest
     public  void after(){
         System.out.println("after");
     }
+
+
 }

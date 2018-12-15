@@ -12,39 +12,55 @@ public class xUnit {
 
     private static  Object object;
 
-    private xUnit(Class clazz) throws NoSuchMethodException, IllegalAccessException, InvocationTargetException, InstantiationException {
-      Object  object = clazz.getConstructor().newInstance();
+    public xUnit() {
     }
+
     public static void test(Class clazz) throws NoSuchMethodException, IllegalAccessException, InstantiationException, InvocationTargetException {
-        xUnit xUnit = new xUnit(clazz);
-        Method[] annotatedMethod = clazz.getDeclaredMethods();
+        Object  object = clazz.getConstructor().newInstance();
+        testDo(clazz,object);
     }
-    public static void ontest(Class clazz) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
-        System.out.println("--- annotations:");
-        Method[] annotatedMethod = clazz.getDeclaredMethods();
+
+    public static void testDo(Class clazz,Object object) throws InvocationTargetException, IllegalAccessException, NoSuchMethodException, InstantiationException {
+        Method[] methods = clazz.getDeclaredMethods();
         ArrayList<Method> publicMethod = new ArrayList<Method>();
-        int size = annotatedMethod.length;
+        int size = methods.length;
         System.out.println("size = "+ size);
-        for (Method method : annotatedMethod){
-            if (method.getModifiers()==1){
-                publicMethod.add(method);
+        for (Method method : methods){
+            if (method.getModifiers()!=1){
+                method.setAccessible(true); //Делаем как бы "public"
             }
+            publicMethod.add(method);
         }
+
+    try {
         for (Method method : publicMethod) {
             if (method.getAnnotation(BeforeTest.class) != null) {
                 method.invoke(object);
             }
         }
-        for (Method method : publicMethod) {
+    } catch (Exception exp){
+        exp.printStackTrace();
+    }
 
-            if (method.getAnnotation(Test.class) != null) {
-                method.invoke(object);
+       try {
+           for (Method method : publicMethod) {
+
+               if (method.getAnnotation(Test.class) != null) {
+                   method.invoke(object);
+               }
+           }
+       }catch (Exception exp){
+           exp.printStackTrace();
+       }
+
+        try {
+            for (Method method : publicMethod) {
+                if (method.getAnnotation(AfterTest.class) != null) {
+                    method.invoke(object);
+                }
             }
-        }
-        for (Method method : publicMethod) {
-            if (method.getAnnotation(AfterTest.class) != null) {
-                method.invoke(object);
-            }
+        }catch (Exception exp){
+            exp.printStackTrace();
         }
     }
 }
