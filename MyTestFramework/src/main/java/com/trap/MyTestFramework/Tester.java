@@ -10,40 +10,40 @@ public class Tester {
     }
 
     @BeforeTest
-    public static void before(){
+    public  void before(){
         System.out.println("before");
     }
 
 
     @BeforeTest
-    public static void before1(){
+    public  void before1(){
         System.out.println("before1");
     }
 
     @BeforeTest
-    public static void before3(){
+    private void before3(){
         System.out.println("before3");
     }
 
     @BeforeTest
-    public static void before2(){
+    public  void before2(){
         System.out.println("before2");
     }
 
 
     @Test
-    public static void testFirst(){
+    public  void testFirst(){
         System.out.println("test1");
     }
 
     @Test
-    public static void testTwo(){
+    public  void testTwo(){
         System.out.println("test2");
     }
 
 
     @AfterTest
-    public static void after(){
+    public  void after(){
         System.out.println("after");
     }
 }
