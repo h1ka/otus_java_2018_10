@@ -1,7 +1,6 @@
 package com.trap.MyArrayList;
 
 
-import java.lang.reflect.Array;
 import java.util.*;
 import java.util.function.Consumer;
 
@@ -10,20 +9,23 @@ public class MyArrayList<E> implements List<E> {
 
     private int size;
     private E[] elements;
-
+    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
+    private static final int DEFAULT_CAPACITY = 10;
+    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
 
     public MyArrayList() {
 
-        this.elements = (E[]) Array.newInstance(Object.class, 0);
+        this.elements = (E[]) new Object[0];
     }
 
     public MyArrayList(int size) {
-        this.elements = (E[]) Array.newInstance(Object.class,size);
+        this.elements = (E[]) new Object[size];
     }
 
     @Override
     public String toString() {
-        return Arrays.toString(elements);
+        var array = Arrays.copyOf(elements, size);
+        return Arrays.toString(array);
     }
 
     @Override
@@ -53,7 +55,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public <T> T[] toArray(T[] a) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 
@@ -72,37 +74,37 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean addAll(Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends E> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void clear() {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -119,7 +121,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public void add(int index, E element) {
-
+        throw new UnsupportedOperationException();
     }
     private Object[] grow(int minCapacity) {
         return elements = Arrays.copyOf(elements,
@@ -140,9 +142,7 @@ public class MyArrayList<E> implements List<E> {
                 ? newCapacity
                 : hugeCapacity(minCapacity);
     }
-    private static final Object[] DEFAULTCAPACITY_EMPTY_ELEMENTDATA = {};
-    private static final int DEFAULT_CAPACITY = 10;
-    private static final int MAX_ARRAY_SIZE = Integer.MAX_VALUE - 8;
+
     private static int hugeCapacity(int minCapacity) {
         if (minCapacity < 0) // overflow
             throw new OutOfMemoryError();
@@ -155,17 +155,17 @@ public class MyArrayList<E> implements List<E> {
     }
     @Override
     public E remove(int index) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -180,7 +180,7 @@ public class MyArrayList<E> implements List<E> {
 
     @Override
     public List<E> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
 
@@ -303,6 +303,7 @@ public class MyArrayList<E> implements List<E> {
 
         @Override
         public void add(E e) {
+            throw new UnsupportedOperationException();
         }
     }
 
