@@ -25,23 +25,19 @@ public class xUnit {
 
         for (Method testMethod : testMethods){
             Object  object = clazz.getConstructor().newInstance();
-            callMethods(beforeTestMethods,object);
             try {
+                callMethods(beforeTestMethods,object);
                 testMethod.invoke(object);
+                callMethods(afterTestMethods,object);
             }catch (Exception exp){
                 System.err.println("Exception in test" + testMethod.toString());
             }
-            callMethods(afterTestMethods,object);
         }
     }
 
-    private static void callMethods(ArrayList<Method> methods,Object object) {
+    private static void callMethods(ArrayList<Method> methods,Object object) throws InvocationTargetException, IllegalAccessException {
         for (Method method: methods) {
-            try {
                 method.invoke(object);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
         }
     }
     private static ArrayList<Method> getPublicMethods(Method[] methods){
