@@ -28,12 +28,13 @@ public class HWCacheDemo {
         for (long i = 0; i<SIZE_FILL_CACHE;i++){
             BigObject bigObject = bigCache.get(i);
             if (bigObject!=null) {
+                System.out.println(i+ " value = " + bigObject);
                 sum++;
             }
         }
         System.out.println(((MyCache<Integer, Integer>) cache).keySet());
         System.out.println(bigCache.size());
         System.out.println(((MyCache<Long, BigObject>) bigCache).keySet());
-        System.out.println("put = "+ SIZE_FILL_CACHE + "get = "+ sum );
+        System.out.println("put = "+ SIZE_FILL_CACHE + " get = "+ sum );
     }
 }

@@ -16,7 +16,7 @@ public class MyCache<K, V> implements HwCache<K, V> {
     public MyCache() {
     }
 
-    private void deleteNullKeys(){
+    private void deleteKeysWithNullValue(){
         while (queueKeys.size()!=0) {
             if (map.size() < 2) return;
 
@@ -36,21 +36,20 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     @Override
     public V put(K key, V value) {
-        this.deleteNullKeys();
-        SoftReference softRef =
+        this.deleteKeysWithNullValue();
+        SoftReference<V> softRef =
                 map.put(key,  new SoftReference<>(value));
         queueKeys.add(key);
 
         for (var kvHwListener : listenerQueue) {
-            HwListener next = kvHwListener;
+            HwListener<K,V> next = kvHwListener;
             next.notify(key, value, "put");
         }
 
         if (softRef==null)
             return null;
 
-        V oldValue = (V) softRef.get();
-        softRef.clear();
+        V oldValue = softRef.get();
 
         return oldValue;
     }
@@ -69,19 +68,12 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     @Override
     public V get(K key) {
-        this.deleteNullKeys();
-        SoftReference softRef = map.get(key);
-        for (HwListener<K, V> kvHwListener : listenerQueue) {
-            V value;
-            HwListener next = kvHwListener;
-            value = (softRef == null) ? null : (V) softRef.get();
-            next.notify(key, value, "get");
-        }
-
+        this.deleteKeysWithNullValue();
+        SoftReference<V> softRef = map.get(key);
         if (softRef==null)
             return null;
 
-        return (V) softRef.get();
+        return softRef.get();
 
     }
 
