@@ -10,36 +10,16 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     private Queue<HwListener<K,V>> listenerQueue = new ArrayDeque<>();
 
-    private Queue<K> queueKeys = new PriorityQueue<>();
 
 
     public MyCache() {
     }
 
-    private void deleteKeysWithNullValue(){
-        while (queueKeys.size()!=0) {
-            if (map.size() < 2) return;
-
-            queueKeys.remove(0);
-            K oldKey = queueKeys.peek();
-            if (map.get(oldKey).get() != null) return;
-
-            map.remove(oldKey);
-            for (var kvHwListener : listenerQueue) {
-                HwListener next = kvHwListener;
-                next.notify(oldKey, "valueIsNull", "clearCache");
-            }
-
-            queueKeys.remove(oldKey);
-        }
-    }
 
     @Override
     public V put(K key, V value) {
-        this.deleteKeysWithNullValue();
         SoftReference<V> softRef =
                 map.put(key,  new SoftReference<>(value));
-        queueKeys.add(key);
 
         for (var kvHwListener : listenerQueue) {
             HwListener<K,V> next = kvHwListener;
@@ -56,22 +36,22 @@ public class MyCache<K, V> implements HwCache<K, V> {
 
     @Override
     public void remove(K key) {
-        SoftReference value = map.get(key);
+        var value = map.get(key);
         for (var kvHwListener : listenerQueue) {
-            HwListener next =  kvHwListener;
+            HwListener<K,V> next =  kvHwListener;
             next.notify(key, value.get(), "remove");
         }
         map.remove ( key );
-        queueKeys.remove(key);
     }
 
 
     @Override
     public V get(K key) {
-        this.deleteKeysWithNullValue();
         SoftReference<V> softRef = map.get(key);
-        if (softRef==null)
+        if (softRef.get()==null){
+            map.remove(key);
             return null;
+        }
 
         return softRef.get();
 

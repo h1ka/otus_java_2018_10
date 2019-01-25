@@ -8,7 +8,7 @@ public class HWCacheDemo {
     }
 
     private void demo() {
-        final int SIZE_FILL_CACHE=100;
+        final int SIZE_FILL_CACHE=10000;
         HwCache<Integer, Integer> cache = new MyCache<>();
         HwListener<?, ?> listener =
                 (key, value, action) -> System.out.println("key:" + key + ", value:" + value + ", action:" + action);
