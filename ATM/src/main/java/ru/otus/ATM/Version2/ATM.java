@@ -6,7 +6,7 @@ public class ATM {
     private Map<Par,Box> boxMap = new HashMap<>();
 
     public ATM() {
-        boxMap.put(new Hundred(),new HundredBox(new Hundred(10)));
+        boxMap.put(new Hundred(),new HundredBox(new Hundred(1)));
         boxMap.put(new FiveHundred(),new FiveHundredBox(new FiveHundred(5)));
     }
 
@@ -28,13 +28,14 @@ public class ATM {
         Map<Par,Integer> cash = new HashMap<>();
 
         Par[] parInBoxes = sortedValueParInBoxes();
+
         for (int i =parInBoxes.length-1 ;i >=0;i--){
             int value=parInBoxes[i].getValue();
             if(sum/value!=0) {
                 int countPar = sum / value;
                 Box box = boxMap.get(parInBoxes[i]);
                 while (countPar!=0) {
-                    if(box.get(countPar)) {
+                    if(box.isGet(countPar)) {
                         sum = sum - countPar * value;
                         cash.put(parInBoxes[i], countPar);
                         break;
@@ -43,10 +44,12 @@ public class ATM {
             }
         }
         if (sum!=0) {
-            System.out.println("Введите корректную сумму");
+            System.out.println("В банкомате не достаточно средсв");
             return null;
         }
-
+        for (var par:cash.keySet() ){
+            boxMap.get(par).get(cash.get(par));
+        }
         return cash;
     }
 

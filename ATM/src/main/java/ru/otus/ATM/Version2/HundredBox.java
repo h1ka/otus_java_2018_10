@@ -1,6 +1,5 @@
 package ru.otus.ATM.Version2;
 
-import java.util.Objects;
 
 public class HundredBox implements Box {
 
@@ -26,11 +25,17 @@ public class HundredBox implements Box {
     }
 
     @Override
-    public boolean get(int count) {
+    public void get(int count) {
+        if(isGet(count)){
+            this.count-=count;
+        }
+    }
+
+    @Override
+    public boolean isGet(int count) {
         if(count>this.count||count<=0){
             return false;
-        } else
-            this.count-=count;
+        }
         return true;
     }
 }

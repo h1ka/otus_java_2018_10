@@ -64,7 +64,7 @@ public class TestATM {
     void testGet(){
         ATM atm = new ATM();
         int oldBalance = atm.balance();
-        atm.get(3000);
-        assertEquals(oldBalance-3000,atm.balance());
+        Map<Par, Integer> result = atm.get(700);
+        assertEquals(oldBalance,atm.balance());
     }
 }
