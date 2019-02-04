@@ -32,10 +32,14 @@ public class ATM {
             int value=parInBoxes[i].getValue();
             if(sum/value!=0) {
                 int countPar = sum / value;
-                sum = sum - countPar * value;
-                cash.put(parInBoxes[i],countPar);
                 Box box = boxMap.get(parInBoxes[i]);
-                box.get(countPar);
+                while (countPar!=0) {
+                    if(box.get(countPar)) {
+                        sum = sum - countPar * value;
+                        cash.put(parInBoxes[i], countPar);
+                        break;
+                    } else countPar--;
+                }
             }
         }
         if (sum!=0) {

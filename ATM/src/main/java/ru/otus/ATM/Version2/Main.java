@@ -1,6 +1,7 @@
 package ru.otus.ATM.Version2;
 
 import java.util.Arrays;
+import java.util.Map;
 
 public class Main {
     public static void main(String[] args) {
@@ -46,6 +47,13 @@ public class Main {
         balanceOneATM=oneATM.balance();
         System.out.println("balance ONE = " + balanceOneATM);
 
+        ATM forCheckAlgoritm = new ATM();
+        Map<Par, Integer> parIntegerMap = forCheckAlgoritm.get(3000);
+        for (var par : parIntegerMap.keySet()){
+            System.out.println("par " + par.getValue() + " count " + parIntegerMap.get(par));
+        }
+        int balance = forCheckAlgoritm.balance();
+        System.out.println(balance);
     }
 
 }

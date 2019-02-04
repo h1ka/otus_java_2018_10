@@ -19,11 +19,12 @@ public class FiveHundredBox implements Box {
     }
 
     @Override
-    public void get(int count) {
+    public boolean get(int count) {
 
         if(count>this.count||count<=0){
-            System.out.println("Неккоректное значение");
+            return false;
         } else
         this.count-=count;
+        return true;
     }
 }

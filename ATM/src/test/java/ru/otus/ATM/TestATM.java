@@ -58,4 +58,13 @@ public class TestATM {
         atm.get(1000000);
         assertEquals(oldBalance,atm.balance());
     }
+
+    @Test
+    @DisplayName("get money fo check algoritm")
+    void testGet(){
+        ATM atm = new ATM();
+        int oldBalance = atm.balance();
+        atm.get(3000);
+        assertEquals(oldBalance-3000,atm.balance());
+    }
 }
