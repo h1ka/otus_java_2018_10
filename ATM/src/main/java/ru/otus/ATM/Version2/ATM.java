@@ -9,7 +9,7 @@ public class ATM {
         boxMap.put(new Hundred(),new HundredBox(new Hundred(1)));
         boxMap.put(new FiveHundred(),new FiveHundredBox(new FiveHundred(5)));
     }
-
+    
     public void put(Par par){
         Box box = boxMap.get(par);
         box.add(par.getCount());
@@ -78,4 +78,6 @@ public class ATM {
         return sum;
 
     }
+
 }
+
