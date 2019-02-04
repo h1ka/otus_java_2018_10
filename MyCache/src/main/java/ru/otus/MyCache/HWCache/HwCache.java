@@ -8,9 +8,9 @@ public interface HwCache<K, V> {
 
     V get(K key);
 
-    void addListener(HwListener listener);
+    void addListener(HwListener<K, V> listener);
 
-    void removeListener(HwListener listener);
+    void removeListener(HwListener<K, V> listener);
 
     int size();
 }

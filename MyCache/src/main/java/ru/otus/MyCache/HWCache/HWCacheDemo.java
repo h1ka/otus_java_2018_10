@@ -10,16 +10,17 @@ public class HWCacheDemo {
     private void demo() {
         final int SIZE_FILL_CACHE=10000;
         HwCache<Integer, Integer> cache = new MyCache<>();
-        HwListener<?, ?> listener =
+        HwListener<Integer, Integer> listener =
                 (key, value, action) -> System.out.println("key:" + key + ", value:" + value + ", action:" + action);
         cache.addListener(listener);
         cache.put(1,1);
         System.out.println(cache.get(1));
         cache.remove(1);
         cache.removeListener(listener);
-
         HwCache<Long, BigObject> bigCache = new MyCache<>();
-        bigCache.addListener(listener);
+        HwListener<Long, BigObject> bigListener =
+                (key, value, action) -> System.out.println("key:" + key + ", value:" + value + ", action:" + action);
+        bigCache.addListener(bigListener);
         for (long i = 0; i<SIZE_FILL_CACHE;i++){
             bigCache.put(i, new BigObject());
         }

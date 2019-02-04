@@ -11,7 +11,6 @@ public class MyCache<K, V> implements HwCache<K, V> {
     private Queue<HwListener<K,V>> listenerQueue = new ArrayDeque<>();
 
 
-
     public MyCache() {
     }
 
@@ -58,13 +57,13 @@ public class MyCache<K, V> implements HwCache<K, V> {
     }
 
     @Override
-    public void addListener(HwListener listener) {
+    public void addListener(HwListener<K, V> listener) {
         listenerQueue.add(listener);
 
     }
 
     @Override
-    public void removeListener(HwListener listener) {
+    public void removeListener(HwListener<K, V> listener) {
         listenerQueue.remove(listener);
     }
 
@@ -73,7 +72,7 @@ public class MyCache<K, V> implements HwCache<K, V> {
         return map.size();
     }
 
-    public Set keySet(){
+     Set keySet(){
         return map.keySet();
     }
 
