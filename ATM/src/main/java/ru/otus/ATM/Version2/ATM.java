@@ -3,20 +3,22 @@ package ru.otus.ATM.Version2;
 import java.util.*;
 
 public class ATM {
-    private Map<Par,Box> boxMap = new HashMap<>();
+    private Map<Currency,Box> boxMap = new HashMap<>();
 
     public ATM() {
-        boxMap.put(new Hundred(),new HundredBox(new Hundred(1)));
-        boxMap.put(new FiveHundred(),new FiveHundredBox(new FiveHundred(5)));
-    }
-    
-    public void put(Par par){
-        Box box = boxMap.get(par);
-        box.add(par.getCount());
+        boxMap.put(Currency.HUNDRED,BoxFactory.getBox(1));
+        boxMap.put(Currency.FIVE_HUNDRED,BoxFactory.getBox(5));
+        boxMap.put(Currency.TWO_HUNDRED,BoxFactory.getBox(1));
     }
 
-    public Map<Par,Integer> get(int sum){
-        if(sum<100){
+    public void put(Currency currency,int count){
+        if(count<0) return;
+        Box box = boxMap.get(currency);
+        box.add(count);
+    }
+
+    public Map<Currency,Integer> get(int sum){
+        if(sum<0){
             System.out.println("Введите корректную сумму");
             return null;
         }
@@ -25,19 +27,19 @@ public class ATM {
             return null;
         }
 
-        Map<Par,Integer> cash = new HashMap<>();
+        Map<Currency,Integer> cash = new HashMap<>();
 
-        Par[] parInBoxes = sortedValueParInBoxes();
+        Currency[] currencyInBoxes = this.sortValuesOfCurrencies();
 
-        for (int i =parInBoxes.length-1 ;i >=0;i--){
-            int value=parInBoxes[i].getValue();
+        for (int i =0 ;i <currencyInBoxes.length;i++){
+            int value=currencyInBoxes[i].getValue();
             if(sum/value!=0) {
                 int countPar = sum / value;
-                Box box = boxMap.get(parInBoxes[i]);
+                Box box = boxMap.get(currencyInBoxes[i]);
                 while (countPar!=0) {
                     if(box.isGet(countPar)) {
                         sum = sum - countPar * value;
-                        cash.put(parInBoxes[i], countPar);
+                        cash.put(currencyInBoxes[i], countPar);
                         break;
                     } else countPar--;
                 }
@@ -48,27 +50,27 @@ public class ATM {
             return null;
         }
         for (var par:cash.keySet() ){
-            boxMap.get(par).get(cash.get(par));
+            boxMap.get(par).removeFromBox(cash.get(par));
         }
         return cash;
     }
 
-    private Par[] sortedValueParInBoxes(){
-        Par[] parsInBoxes = new Par[boxMap.size()];
+    private Currency[] sortValuesOfCurrencies() {
+        Currency[] currencies = new Currency[boxMap.size()];
         int i = 0;
-        for (var par : boxMap.keySet()){
-            parsInBoxes[i++]=par;
+        for (var value : boxMap.keySet()){
+            currencies[i++]=value;
         }
-        for (int j =0; j<parsInBoxes.length;j++){
-            for (int k =0; k<parsInBoxes.length;k++){
-                if (parsInBoxes[k].getValue()>parsInBoxes[j].getValue()){
-                    var temp = parsInBoxes[j];
-                    parsInBoxes[j]=parsInBoxes[k];
-                    parsInBoxes[k]=temp;
+        for (int j = 0; j<currencies.length-1;j++ ){
+            for (int k = 1; k<currencies.length; k++){
+                if ((currencies[j].getValue()) < (currencies[k].getValue())){
+                    var temp = currencies[j];
+                    currencies[j]=currencies[k];
+                    currencies[k]=temp;
                 }
             }
         }
-        return parsInBoxes;
+        return currencies;
     }
     public int balance(){
         int sum=0;

@@ -3,8 +3,8 @@ package ru.otus.ATM;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import ru.otus.ATM.Version2.ATM;
-import ru.otus.ATM.Version2.FiveHundred;
-import ru.otus.ATM.Version2.Hundred;
+import ru.otus.ATM.Version2.Currency;
+
 
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -18,7 +18,7 @@ public class TestATM {
     void testPutMoney(){
         ATM atm = new ATM();
         int oldBalance = atm.balance();
-        atm.put(new Hundred(100));
+        atm.put(Currency.HUNDRED,100);
         int expectedBalance = oldBalance+10000;
         assertEquals(expectedBalance,atm.balance());
     }
@@ -28,12 +28,12 @@ public class TestATM {
     void testPutMoneyWithNegativeValue(){
         ATM atm = new ATM();
         int oldBalance = atm.balance();
-        atm.put(new FiveHundred(-100));
+        atm.put(Currency.FIVE_HUNDRED,-100);
         assertEquals(oldBalance,atm.balance());
     }
 
     @Test
-    @DisplayName("get money with negative value")
+    @DisplayName("removeFromBox money with negative value")
     void testGetMoneyWithNegativeValue(){
         ATM atm = new ATM();
         int oldBalance = atm.balance();
@@ -42,7 +42,7 @@ public class TestATM {
     }
 
     @Test
-    @DisplayName("get money")
+    @DisplayName("removeFromBox money")
     void testGetMoney(){
         ATM atm = new ATM();
         int oldBalance = atm.balance();
@@ -50,23 +50,17 @@ public class TestATM {
         int expectedBalance = oldBalance-500;
         assertEquals(expectedBalance,atm.balance());
     }
+
     @Test
-    @DisplayName("get money with big value")
+    @DisplayName("removeFromBox money with big value")
     void testGetMoneyWithBigValue(){
         ATM atm = new ATM();
         int oldBalance = atm.balance();
-        atm.get(1000000);
+        int bigValue = oldBalance*2;
+        atm.get(bigValue);
         assertEquals(oldBalance,atm.balance());
     }
 
-    @Test
-    @DisplayName("get money with big count par")
-    void testGet(){
-        ATM atm = new ATM();
-        int oldBalance = atm.balance();
-        atm.get(700);
-        assertEquals(oldBalance,atm.balance());
-    }
 
 
 }

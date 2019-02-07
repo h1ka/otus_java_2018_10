@@ -1,6 +1,8 @@
 package ru.otus.ATM.Version2;
 
 
+import java.util.Map;
+
 public class Main {
     public static void main(String[] args) {
 
@@ -8,36 +10,26 @@ public class Main {
         int balanceOneATM = oneATM.balance();
         System.out.println("balance = " + balanceOneATM);
 
-        oneATM.put(new Hundred(10));
+        System.out.println("Кладем 10 по 100");
+        oneATM.put(Currency.HUNDRED,10);
 
         balanceOneATM = oneATM.balance();
-
         System.out.println("balance = " + balanceOneATM);
 
-        var pars = oneATM.get(700);
-        System.out.println("Снимаем 700");
+        System.out.println("Снимаем 900");
+        var pars = oneATM.get(900);
         for (var par : pars.keySet()){
-            System.out.println("Номинал: " +par + " Колличество: " + pars.get(par));
+            System.out.println("Номинал: " + par + " Колличество: " + pars.get(par));
         }
-
-        balanceOneATM=oneATM.balance();
-
-        System.out.println("balance = " + balanceOneATM);
-
-
-        oneATM.put(new Hundred(-1));
-        balanceOneATM=oneATM.balance();
-        System.out.println("balance = " + balanceOneATM);
-        oneATM.get(-100);
         balanceOneATM=oneATM.balance();
         System.out.println("balance = " + balanceOneATM);
 
 
-        System.out.println("----------");
-        ATM forCheckAlgoritm = new ATM();
-        forCheckAlgoritm.get(700);
-        int balance = forCheckAlgoritm.balance();
-        System.out.println(balance);
+        System.out.println("Кладем 2 по 200");
+        oneATM.put(Currency.TWO_HUNDRED,2);
+        System.out.println("balance = " + oneATM.balance());
+
+
     }
 
 }
