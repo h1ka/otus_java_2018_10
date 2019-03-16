@@ -1,12 +1,10 @@
 package ru.otus.Hibernate.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 @Entity
 public class Phone {
+    @Column(name = "phone_number", nullable = false)
     private String number;
 
 

@@ -1,13 +1,10 @@
 package ru.otus.Hibernate.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Entity
 public class Address {
-
+    @Column(name = "street", nullable = false)
     private String street;
 
 

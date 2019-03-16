@@ -9,12 +9,9 @@ import ru.otus.Hibernate.model.Phone;
 import ru.otus.Hibernate.model.User;
 
 import javax.sql.DataSource;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class Demo
 {

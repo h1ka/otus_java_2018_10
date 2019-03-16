@@ -11,8 +11,6 @@ import ru.otus.Hibernate.model.Address;
 import ru.otus.Hibernate.model.Phone;
 import ru.otus.Hibernate.model.User;
 
-import javax.persistence.Id;
-import java.lang.reflect.Field;
 
 
 public class DbServiceHibernate<T> implements DbService<T> {

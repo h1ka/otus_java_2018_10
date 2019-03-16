@@ -9,7 +9,9 @@ public class User {
 
     @Id
     private  long id;
+    @Column(name = "name", nullable = false)
     private  String name;
+    @Column(name = "age", nullable = false)
     private  int age;
 
     public User() {
