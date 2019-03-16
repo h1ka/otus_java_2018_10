@@ -13,7 +13,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class DbServiceImpl<T> implements DbService<T> {
-    DataSource dataSource;
+    private final DataSource dataSource;
 
     public DbServiceImpl(DataSource dataSource) {
         this.dataSource = dataSource;
