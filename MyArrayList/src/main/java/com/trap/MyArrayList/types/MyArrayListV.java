@@ -2,7 +2,6 @@ package com.trap.MyArrayList.types;
 
 
 import java.util.*;
-import java.util.function.Consumer;
 import java.util.stream.Collectors;
 
 public class MyArrayListV<T> implements List<T> {
@@ -30,7 +29,7 @@ public class MyArrayListV<T> implements List<T> {
 
     @Override
     public boolean contains(Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -45,7 +44,7 @@ public class MyArrayListV<T> implements List<T> {
 
     @Override
     public <T1> T1[] toArray(T1[] a) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -63,47 +62,47 @@ public class MyArrayListV<T> implements List<T> {
 
     @Override
     public boolean remove(Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean containsAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean addAll(Collection<? extends T> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean addAll(int index, Collection<? extends T> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean removeAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean retainAll(Collection<?> c) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public void clear() {
-
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public boolean equals(Object o) {
-        return false;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int hashCode() {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -125,17 +124,17 @@ public class MyArrayListV<T> implements List<T> {
 
     @Override
     public T remove(int index) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int indexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
     public int lastIndexOf(Object o) {
-        return 0;
+        throw new UnsupportedOperationException();
     }
 
     @Override
@@ -150,7 +149,7 @@ public class MyArrayListV<T> implements List<T> {
 
     @Override
     public List<T> subList(int fromIndex, int toIndex) {
-        return null;
+        throw new UnsupportedOperationException();
     }
 
     @Override
