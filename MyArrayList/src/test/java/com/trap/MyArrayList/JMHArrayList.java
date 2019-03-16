@@ -1,5 +1,6 @@
 package com.trap.MyArrayList;
 
+import com.trap.MyArrayList.types.MyArrayListV;
 import org.openjdk.jmh.annotations.*;
 import org.openjdk.jmh.runner.Runner;
 import org.openjdk.jmh.runner.RunnerException;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 @BenchmarkMode(Mode.SingleShotTime)
 @OutputTimeUnit(TimeUnit.MILLISECONDS)
 public class JMHArrayList {
-    MyArrayList myArrayList ;
+    MyArrayListV myArrayList ;
     long summ;
     ArrayList arrayList;
     long summA;
@@ -25,7 +26,7 @@ public class JMHArrayList {
     }
     @Setup
     public void setup(){
-        myArrayList = new MyArrayList(2000000);
+        myArrayList = new MyArrayListV(2000000);
         arrayList = new ArrayList(2000000);
     }
 

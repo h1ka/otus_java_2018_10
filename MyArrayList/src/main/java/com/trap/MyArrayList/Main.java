@@ -1,51 +1,52 @@
 package com.trap.MyArrayList;
 
-import java.util.ArrayList;
+import com.trap.MyArrayList.types.MyArrayListV;
+
 import java.util.Collections;
 import java.util.List;
 
 public class Main {
 
     public static void main(String[] args) {
-        List arrayList = new MyArrayList();
-        List myArrayList = new MyArrayList();
-
-
+        List<Integer> arrayList = new MyArrayListV();
         for (int i =0;i<10;i++){
             arrayList.add(i);
+        }
+        arrayList.add(55);
+        arrayList.add(555);
+        arrayList.add(15);
+        arrayList.add(5);
+
+
+        System.out.println("arrayList " + arrayList);
+        System.out.println("\n--------");
+        System.out.println("sort");
+        Collections.sort(arrayList,Collections.reverseOrder());
+        System.out.println("arrayList " + arrayList);
+
+
+        System.out.println("\n--------");
+        System.out.println("addAll");
+        Collections.addAll(arrayList,1, 2, 3);
+        System.out.println("arrayList " + arrayList);
+
+
+        List myArrayList = new MyArrayListV();
+        for (int i = 10; i>0 ; i--) {
             myArrayList.add(i+1000);
         }
 
-        arrayList.add(11);
-        arrayList.add(12);
-        arrayList.add(13);
-
-        myArrayList.add(31);
-        myArrayList.add(32);
-        myArrayList.add(33);
-
-
-        System.out.println(arrayList.set(1,22));
-        System.out.println("1 = " + arrayList.get(1));
-
-       Collections.addAll(arrayList,myArrayList);
-       //Collections.copy(arrayList,myArrayList);
-       //Collections.sort(arrayList,Collections.reverseOrder());
-
-        System.out.println("sort");
-        System.out.println("---------\nArrayList" );
-        for (Object element:
-             arrayList) {
-            System.out.print(element + " ");
-        }
-        System.out.println("\n---------\nMyArrayList" );
-        for (Object element:
-                myArrayList) {
-            System.out.print(element + " ");
+        System.out.println("\n--------");
+        System.out.println("copy");
+        System.out.println("myArrayList" + myArrayList);
+        Collections.copy(arrayList,myArrayList);
+        System.out.println("arrayList" + arrayList);
+        System.out.println("\n--------foreach arrayList");
+        for (var a:arrayList) {
+            System.out.print(a+" ");
         }
 
-
-
+      
     }
 }
 
