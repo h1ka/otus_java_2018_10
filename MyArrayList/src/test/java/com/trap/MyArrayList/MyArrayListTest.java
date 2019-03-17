@@ -11,6 +11,20 @@ import static org.junit.Assert.*;
 import static org.junit.Assert.assertFalse;
 
 public class MyArrayListTest {
+
+    @Test(expected = RuntimeException.class)
+    public void setBYIndexMoreSize(){
+        List<String> myArrayList = new MyArrayListV<>();
+        myArrayList.add("value");
+        myArrayList.set(3,"value2");
+    }
+    @Test(expected = RuntimeException.class)
+    public void getByIndexMoreSize(){
+        List<String> myArrayList = new MyArrayListV<>();
+        myArrayList.add("value1");
+        myArrayList.get(3);
+
+    }
     @Test
     public void listIterator() throws Exception {
         List<String> myArrayList = new MyArrayListV<>(2);

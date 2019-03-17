@@ -5,16 +5,16 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class MyArrayListV<T> implements List<T> {
-    private static final int INITIAL_SIZE = 10;
+    private static final int INITIAL_CAPACITY = 10;
 
-    private T[] array = (T[]) new Object[INITIAL_SIZE];
+    private T[] array = (T[]) new Object[INITIAL_CAPACITY];
     private int size = 0;
 
     public MyArrayListV() {
     }
 
-    public MyArrayListV(int initialSize) {
-        array = (T[]) new Object[initialSize];
+    public MyArrayListV(int initialCapacity) {
+        array = (T[]) new Object[initialCapacity];
     }
 
     @Override
@@ -107,11 +107,17 @@ public class MyArrayListV<T> implements List<T> {
 
     @Override
     public T get(int index) {
+        if(index>size){
+            throw new RuntimeException("index exceeds size");
+        }
         return array[index];
     }
 
     @Override
     public T set(int index, T element) {
+        if(index>size){
+            throw new RuntimeException("index exceeds size");
+        }
         T last = array[index];
         array[index]=element;
         return last;
