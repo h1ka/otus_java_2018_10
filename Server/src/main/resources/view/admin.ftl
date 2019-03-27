@@ -5,17 +5,12 @@
     <title>Admin page</title>
 </head>
 <body>
-<!--<div>Hello admin</div>-->
-    <#--<div><#list users as user>-->
-            <#--<p>ID : ${user.id}</p>-->
-            <#--</br>-->
-            <#--<p>Name : ${user.name}</p>-->
-            <#--</br>-->
-            <#--<p>Age : ${user.age}</p>-->
-        <#--<#else>-->
-        <#--<p>No users</p>-->
-    <#--</#list>-->
-
+<form action="/index.html" method="get">
+    <input type="submit" value="HOME">
+</form>
+        <form action="/logout" method="get">
+            <input type="submit" value="LOGOUT">
+        </form>
         <table border=1>
             <tr>
                 <td>ID</td>
@@ -40,7 +35,7 @@
         Id : <input type="text" name="id">
         Name : <input type="text" name="name">
         Age : <input type="text" name="age">
-        <input type="submit" name="send">
+        <input type="submit" value="SEND">
     </form>
 </div>
 </body>

@@ -8,7 +8,7 @@ import java.util.Locale;
 import java.util.Map;
 
 public class TemplateProcessor {
-    private static final String HTML_DIR = "/WEB-INF/view/";
+    private static final String HTML_DIR = "/view";
 
     private final Configuration configuration;
 

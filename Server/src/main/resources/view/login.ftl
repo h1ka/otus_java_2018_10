@@ -1,7 +1,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" content="text/html;" lang="ru">
 <head>
-    <title>Index</title>
     <meta charset="UTF-8">
+    <title>Title</title>
 </head>
 <body>
 <div>
@@ -10,7 +10,7 @@
         Password:<input type="password" name="password"/><br/>
 
         <input type="submit" value="login">
-       <p><#if message?exists>${message}</#if></p>
+        <p><#if message??>${message}</#if></p>
     </form>
 </div>
 </body>

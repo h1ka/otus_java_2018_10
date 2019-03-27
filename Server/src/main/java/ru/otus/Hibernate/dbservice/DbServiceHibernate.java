@@ -7,7 +7,6 @@ import org.hibernate.boot.MetadataSources;
 import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
-import org.hibernate.query.Query;
 import ru.otus.Hibernate.model.Address;
 import ru.otus.Hibernate.model.Phone;
 import ru.otus.Hibernate.model.User;

@@ -28,13 +28,13 @@ public class LoadingDB
         user.setAddress(userAddress);
         user.setPhone(Collections.singletonList(userPhone));
 
-        User notUser = new User(1l,"NotNika",25);
+        User notUser = new User(1l,"Nika",25);
         Address notUserAddress = new Address("Saint Petersburg",notUser);
         Phone notUserPhone = new Phone("89533188826",notUser);
         notUser.setAddress(notUserAddress);
         notUser.setPhone(Collections.singletonList(notUserPhone));
 
-        User user2 = new User(2l,"User2",25);
+        User user2 = new User(2l,"User",25);
         Address user2Address = new Address("Moscow",user2);
         Phone user2Phone = new Phone("89999999999",user2);
         Phone user2Phone2 = new Phone("81111111111",user2);
