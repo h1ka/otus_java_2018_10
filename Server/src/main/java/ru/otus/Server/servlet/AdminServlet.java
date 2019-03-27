@@ -28,11 +28,6 @@ public class AdminServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)throws IOException {
-        try {
-            LoadingDB.start();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
 
         if (request.getSession().getAttribute("name") != null) {
             response.getWriter().println(getPage(loadUsers()));

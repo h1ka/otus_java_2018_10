@@ -49,11 +49,6 @@ public class AdminServer {
 
     public void start() throws Exception {
 
-//        try {
-//            LoadingDB.start();
-//        } catch (SQLException e) {
-//            e.printStackTrace();
-//        }
         ResourceHandler resourceHandler = new ResourceHandler();
         Resource resource = Resource.newClassPathResource(PUBLIC_HTML);
         resourceHandler.setBaseResource(resource);
@@ -62,7 +57,7 @@ public class AdminServer {
 
         context.addServlet(new ServletHolder(new LoginServlet()),"/login");
 
-        context.addServlet(new ServletHolder(new AdminServlet(new DbServiceHibernate<>())),"/admin");
+        context.addServlet(new ServletHolder(new AdminServlet(new LoadingDB().start())),"/admin");
 
         context.addServlet(new ServletHolder(new LogoutServlet()),"/logout");
         org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(PORT);

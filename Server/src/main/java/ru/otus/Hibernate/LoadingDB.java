@@ -18,7 +18,7 @@ public class LoadingDB
 {
     private static final String URL = "jdbc:h2:mem:testDB;DB_CLOSE_DELAY=-1";
 
-    public static void start() throws SQLException {
+    public  DbService<User>  start() throws SQLException {
 
         DataSource dataSource = new DataSourceH2(); //!!!!
         long id = 1;
@@ -47,6 +47,7 @@ public class LoadingDB
         dbService.save(user);
         dbService.save(notUser);
         dbService.save(user2);
+        return dbService;
     }
 
 }
