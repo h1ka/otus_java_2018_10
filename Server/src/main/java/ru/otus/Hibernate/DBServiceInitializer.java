@@ -14,11 +14,11 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
 
-public class LoadingDB
+public class DBServiceInitializer
 {
     private static final String URL = "jdbc:h2:mem:testDB;DB_CLOSE_DELAY=-1";
 
-    public  DbService<User>  start() throws SQLException {
+    public  DbService<User> init() throws SQLException {
 
         DataSource dataSource = new DataSourceH2(); //!!!!
         long id = 1;

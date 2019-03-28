@@ -1,6 +1,5 @@
 package ru.otus.Server.servlet;
 
-import ru.otus.Hibernate.LoadingDB;
 import ru.otus.Hibernate.dbservice.DbService;
 import ru.otus.Hibernate.model.User;
 import ru.otus.Server.helper.TemplateProcessor;
@@ -11,7 +10,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

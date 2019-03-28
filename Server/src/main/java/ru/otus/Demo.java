@@ -1,6 +1,5 @@
 package ru.otus;
 
-import ru.otus.Hibernate.LoadingDB;
 import ru.otus.Server.AdminServer;
 
 public class Demo {

@@ -5,17 +5,10 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.eclipse.jetty.util.resource.Resource;
-import ru.otus.Hibernate.LoadingDB;
-import ru.otus.Hibernate.dbservice.DbServiceHibernate;
+import ru.otus.Hibernate.DBServiceInitializer;
 import ru.otus.Server.servlet.AdminServlet;
 import ru.otus.Server.servlet.LoginServlet;
 import ru.otus.Server.servlet.LogoutServlet;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.URL;
-import java.sql.SQLException;
 
 public class AdminServer {
     private final int PORT ;
@@ -57,7 +50,7 @@ public class AdminServer {
 
         context.addServlet(new ServletHolder(new LoginServlet()),"/login");
 
-        context.addServlet(new ServletHolder(new AdminServlet(new LoadingDB().start())),"/admin");
+        context.addServlet(new ServletHolder(new AdminServlet(new DBServiceInitializer().init())),"/admin");
 
         context.addServlet(new ServletHolder(new LogoutServlet()),"/logout");
         org.eclipse.jetty.server.Server server = new org.eclipse.jetty.server.Server(PORT);
