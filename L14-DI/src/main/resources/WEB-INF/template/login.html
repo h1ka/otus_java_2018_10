@@ -1,0 +1,33 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<th:url value="/login" var="loginUrl"/>
+<form action="${loginUrl}" method="post">       1
+    <th:if test="${param.error != null}">        2
+        <p>
+            Invalid username and password.
+        </p>
+    </th:if>
+    <th:if test="${param.logout != null}">       3
+        <p>
+            You have been logged out.
+        </p>
+    </th:if>
+    <p>
+        <label for="username">Username</label>
+        <input type="text" id="username" name="username"/>  4
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input type="password" id="password" name="password"/>  5
+    </p>
+    <input type="hidden"                        6
+           name="${_csrf.parameterName}"
+           value="${_csrf.token}"/>
+    <button type="submit" class="btn">Log in</button>
+</form>
+</body>
+</html>

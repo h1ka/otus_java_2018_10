@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>List of all users</title>
+    <style type="text/css">
+        body {
+            padding: 50px;
+        }
+
+        .users, .users td {
+            border: 1px solid lightgray;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+<h1>Users:</h1>
+
+<table  class="users">
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="user : ${users}">
+        <div th:object="${user}">
+            <td th:text="*{id}">1</td>
+            <td th:text="*{name}">John Doe</td>
+            <td th:text="*{age}">18</td>
+            <td>
+                <a th:href="@{/edit(id=${user.id})}" href="edit.html">Edit</a>
+            </td>
+        </div>
+    </tr>
+    </tbody>
+    <a th:href="@{/user/create}" href="userCreate.html">New user</a>
+
+</table>
+</body>
+</html>
