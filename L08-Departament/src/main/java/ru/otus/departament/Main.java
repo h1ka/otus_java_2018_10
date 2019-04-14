@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        SimpleBox one = new SimpleBox(Currency.HUNDRED,4);
+        SimpleBox one1 = new SimpleBox(Currency.HUNDRED,4);
         SimpleBox two = new SimpleBox(Currency.FIVE_HUNDRED,4);
         SimpleBox three = new SimpleBox(Currency.TWO_HUNDRED,4);
 
@@ -17,7 +17,7 @@ public class Main {
         SimpleBox atm3two = new SimpleBox(Currency.FIVE_HUNDRED,5);
         SimpleBox atm3three = new SimpleBox(Currency.TWO_HUNDRED,5);
 
-        List<SimpleBox> list = Arrays.asList(one,two,three);
+        List<SimpleBox> list = Arrays.asList(one1,two,three);
         List<SimpleBox> list2 = Arrays.asList(atm2one,atm2two,atm2three);
         List<SimpleBox> list3 = Arrays.asList(atm3one,atm3two,atm3three);
 
