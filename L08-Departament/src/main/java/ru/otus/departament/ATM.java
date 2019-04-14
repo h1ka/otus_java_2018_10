@@ -92,8 +92,8 @@ public class ATM implements Listener {
     }
 
     @Override
-    public long notifyLong() {
-       return balance();
+    public long executeCommand(Command command) {
+        return command.execute(this);
     }
 }
 

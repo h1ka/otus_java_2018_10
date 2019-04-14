@@ -1,14 +1,13 @@
 package ru.otus.departament;
 
 import java.util.*;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.stream.Collectors;
 
 public class Department {
-    List<ATM> atmList;
-    Map<ATM,ATMState> stateMap;
-    Queue<Command> commands ;
-    List<Listener> listeners;
+    private List<ATM> atmList;
+    private Map<ATM,ATMState> stateMap;
+    private Queue<Command> commands ;
+    private List<Listener> listeners;
     public Department(List<ATM> atmList) {
         this.atmList = atmList;
         stateMap = atmList.stream()
@@ -21,8 +20,6 @@ public class Department {
         listeners=new ArrayList<>();
         commands = new LinkedList<>();
         listeners.addAll(atmList);
-
-        listeners.forEach(listener -> commands.add(new Balance(listener)));
-        return commands.stream().mapToLong(Command::execute).sum();
+        return listeners.stream().mapToLong(listener -> listener.executeCommand(new Balance())).sum();
      }
 }

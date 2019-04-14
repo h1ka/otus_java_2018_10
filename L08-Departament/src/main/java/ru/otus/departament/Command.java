@@ -1,5 +1,5 @@
 package ru.otus.departament;
 
 public interface Command {
-    long execute();
+    long execute(ATM atm);
 }
