@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class ATM {
+public class ATM implements Listener {
     private Map<Currency,SimpleBox> boxMap = new HashMap<>();
 
     public ATM(List<SimpleBox> boxList) {
@@ -89,6 +89,11 @@ public class ATM {
 
     public void restore(ATMState atmState) {
         this.boxMap=atmState.getState();
+    }
+
+    @Override
+    public long notifyLong() {
+       return balance();
     }
 }
 
